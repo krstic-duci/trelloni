@@ -1,39 +1,48 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Home from '../containers/Home';
-import Boards from '../containers/Boards';
-import Profile from '../containers/Profile';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import Login from '../components/Login';
+import Home from '../components/Home';
+import Boards from '../components/Boards';
+import Profile from '../components/Profile';
 import NoMatch from '../components/NoMatch';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-export default function Routes() {
+function PrivateRoute({ children, ...rest }) {
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
   return (
-    <Router>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/boards'>Boards</Link>
-        </li>
-        <li>
-          <Link to='/profile'>Profile</Link>
-        </li>
-      </ul>
+    <>
+      <Header />
+      <Route
+        {...rest}
+        render={() => (isAuth ? children : <Redirect to='/login' />)}
+      />
+      <Footer />
+    </>
+  );
+}
 
+export default function Router() {
+  return (
+    <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
+        <Route path='/login' component={Login} />
+
+        <PrivateRoute exact path='/'>
           <Home />
-        </Route>
-        <Route path='/boards'>
+        </PrivateRoute>
+
+        <PrivateRoute path='/boards'>
           <Boards />
-        </Route>
-        <Route path='/profile'>
+        </PrivateRoute>
+
+        <PrivateRoute path='/profile'>
           <Profile />
-        </Route>
-        <Route path='*'>
-          <NoMatch />
-        </Route>
+        </PrivateRoute>
+
+        <Route path='*' component={NoMatch} />
       </Switch>
-    </Router>
+    </BrowserRouter>
   );
 }
