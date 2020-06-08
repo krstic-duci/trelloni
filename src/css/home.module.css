@@ -1,0 +1,15 @@
+.cards-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cards-container > section {
+  background-color: burlywood;
+  min-height: 400px;
+  flex-basis: 30%;
+  border-radius: 10px;
+}
+
+.cards-container > section h2 {
+  text-align: center;
+}

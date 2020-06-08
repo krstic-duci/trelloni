@@ -12,9 +12,7 @@ export default function Login() {
     dispatch(authAction(true));
 
     // Simulate the auth
-    setTimeout(() => {
-      history.push('/');
-    }, 30);
+    history.push('/');
   };
 
   return (

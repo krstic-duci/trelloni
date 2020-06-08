@@ -1,23 +1,20 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Login from '../components/Login';
-import Home from '../components/Home';
-import Boards from '../components/Boards';
-import Profile from '../components/Profile';
+import Login from '../containers/Login';
+import Home from '../containers/Home';
+import Boards from '../containers/Boards';
+import Profile from '../containers/Profile';
 import NoMatch from '../components/NoMatch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute({ children }) {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
   return (
     <>
       <Header />
-      <Route
-        {...rest}
-        render={() => (isAuth ? children : <Redirect to='/login' />)}
-      />
+      <Route render={() => (isAuth ? children : <Redirect to='/login' />)} />
       <Footer />
     </>
   );
