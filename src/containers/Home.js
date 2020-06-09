@@ -1,49 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { CardStatus } from '../constants';
 import styles from '../css/home.module.css';
+import Cards from './Cards';
+import CardMaker from '../components/CardMaker';
 
 export default function Home() {
-  const [isFormShown, setIsFormShown] = useState(false);
-
-  const showCardSubmitForm = () => {
-    setIsFormShown(!isFormShown);
-  };
+  const cards = useSelector((state) => state.cardReducer.cards);
+  const cardsInNew = cards.filter((elem) => elem.status === CardStatus.NEW);
+  const cardsInProgress = cards.filter(
+    (elem) => elem.status === CardStatus.PROGRESS,
+  );
+  const cardsInFinished = cards.filter(
+    (elem) => elem.status === CardStatus.FINISHED,
+  );
   return (
     <section>
-      <h1>Home</h1>
-      <div>
-        <header>
-          <p>Welcome to Trelloni</p>
-        </header>
-      </div>
+      <h1>Welcome to Trelloni</h1>
 
       <div>
-        <div>
-          <button onClick={showCardSubmitForm}>
-            {isFormShown ? 'Close form' : 'Show form'}
-          </button>
-          {isFormShown ? (
-            <form onSubmit={(e) => e.preventDefault()}>
-              <label>
-                <input type='text' placeholder='Card title' />
-              </label>
-              <button type='submit'>Make new card</button>
-            </form>
-          ) : null}
-        </div>
+        <CardMaker />
 
-        {/* Cards */}
         <div className={styles['cards-container']}>
-          <section>
-            <h2>New</h2>
-          </section>
+          <Cards titleHeadline='New' cardsToPrint={cardsInNew} />
 
-          <section>
-            <h2>In progress</h2>
-          </section>
+          <Cards titleHeadline='In Progress' cardsToPrint={cardsInProgress} />
 
-          <section>
-            <h2>Finished</h2>
-          </section>
+          <Cards titleHeadline='Finished' cardsToPrint={cardsInFinished} />
         </div>
       </div>
     </section>

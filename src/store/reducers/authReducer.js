@@ -5,6 +5,7 @@ const initialState = {
 };
 
 export default function authReducer(state = initialState, action) {
+  // eslint-disable-next-line
   if (action.type == SET_AUTH) {
     return {
       ...state,

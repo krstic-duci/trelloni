@@ -1,0 +1,18 @@
+.cards-single-container {
+  padding: 5px;
+  background-color: cornsilk;
+  margin: 10px;
+  border-radius: 2px;
+}
+
+.cards-single-container h3,
+.cards-single-container select {
+  display: inline-block;
+  width: 50%;
+}
+
+.cards-single-container div > textarea {
+  resize: vertical;
+  min-height: 20px;
+  max-height: 100px;
+}
