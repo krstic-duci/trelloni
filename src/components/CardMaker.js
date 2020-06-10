@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { makeCard } from '../store/actions/cardAction';
 import { uniqueId } from '../utils/helpers.js';
@@ -6,7 +6,6 @@ import { uniqueId } from '../utils/helpers.js';
 export default function CardMaker() {
   const [isFormShown, setIsFormShown] = useState(false);
   const [inputVal, setInputVal] = useState('');
-  const inputRef = useRef(null);
   const dispatch = useDispatch();
 
   const showCardSubmitForm = () => {
@@ -24,7 +23,7 @@ export default function CardMaker() {
           id: 'cards-' + uniqueId(),
           title: inputVal,
           details: [1, 2, 3],
-          status: 'progress',
+          status: 'new',
         }),
       );
     }
@@ -35,19 +34,19 @@ export default function CardMaker() {
       <button onClick={showCardSubmitForm}>
         {isFormShown ? 'Close form' : 'Show form'}
       </button>
-      {isFormShown ? (
-        <form onSubmit={(e) => e.preventDefault()}>
-          <label>
-            <input
-              type='text'
-              placeholder='Card title'
-              value={inputVal}
-              onChange={(e) => setTitleCard(e)}
-            />
-          </label>
-          <button onClick={makingNewCard}>Make new card</button>
-        </form>
-      ) : null}
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        style={isFormShown ? { display: 'block' } : { display: 'none' }}>
+        <label>
+          <input
+            type='text'
+            placeholder='Card title'
+            value={inputVal}
+            onChange={(e) => setTitleCard(e)}
+          />
+        </label>
+        <button onClick={makingNewCard}>Make new card</button>
+      </form>
     </div>
   );
 }

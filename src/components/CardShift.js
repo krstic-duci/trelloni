@@ -1,11 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { moveCard } from '../store/actions/cardAction';
+import { CardStatus } from '../constants';
 
-export default function CardShift({ elemIndex }) {
+export default function CardShift({ id, status }) {
+  const dispatch = useDispatch();
+  const selectValue = (e) => {
+    dispatch(moveCard({ id: id, status: e.target.value }));
+  };
   return (
-    <select>
-      <option value=''>new</option>
-      <option value=''>in progress</option>
-      <option value=''>finished</option>
+    <select onChange={(e) => selectValue(e)} value={status}>
+      <option value={CardStatus.NEW}>new</option>
+      <option value={CardStatus.PROGRESS}>in progress</option>
+      <option value={CardStatus.FINISHED}>finished</option>
     </select>
   );
 }

@@ -6,7 +6,12 @@ export default function Cards({ titleHeadline, cardsToPrint }) {
     <section>
       <h2>{titleHeadline}</h2>
       {cardsToPrint.map((elem, i) => (
-        <CardSingle titleCard={elem.title} key={i} id={elem.id} />
+        <CardSingle
+          titleCard={elem.title}
+          key={i}
+          id={elem.id}
+          status={elem.status}
+        />
       ))}
     </section>
   );

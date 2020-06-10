@@ -1,4 +1,8 @@
-import { MAKE_NEW_CARD, DELETE_CARD } from '../action-types/actionTypes';
+import {
+  MAKE_NEW_CARD,
+  DELETE_CARD,
+  MOVE_CARD,
+} from '../action-types/actionTypes';
 
 const initialState = {
   cards: [],
@@ -20,6 +24,20 @@ export default function cardReducer(state = initialState, action) {
     return {
       ...state,
       cards: filteredCards,
+    };
+  }
+
+  // eslint-disable-next-line
+  if (action.type == MOVE_CARD) {
+    const tmpArr = state.cards.map((elem) => {
+      if (elem.id === action.payload.id) {
+        elem.status = action.payload.status;
+      }
+      return elem;
+    });
+    return {
+      ...state,
+      cards: tmpArr,
     };
   }
 

@@ -4,7 +4,7 @@ import CardShift from './CardShift';
 import { useDispatch } from 'react-redux';
 import { deleteCard } from '../store/actions/cardAction';
 
-export default function CardSingle({ titleCard, id }) {
+export default function CardSingle({ titleCard, id, status }) {
   const dispatch = useDispatch();
   const deleteCardById = () => {
     dispatch(deleteCard(id));
@@ -12,7 +12,7 @@ export default function CardSingle({ titleCard, id }) {
   return (
     <div className={styles['cards-single-container']}>
       <h3>{titleCard}</h3>
-      <CardShift />
+      <CardShift id={id} status={status} />
       <div>
         <textarea placeholder='Type text...'></textarea>
       </div>
