@@ -1,4 +1,8 @@
-let _id = 0;
-export function uniqueId() {
-  return _id++;
+function makeId() {
+  let _id = 0;
+  return function innerMakeId() {
+    return ++_id;
+  };
 }
+
+export let uniqueId = makeId();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { makeCard } from '../store/actions/cardAction';
 import { uniqueId } from '../utils/helpers.js';
@@ -6,6 +6,7 @@ import { uniqueId } from '../utils/helpers.js';
 export default function CardMaker() {
   const [isFormShown, setIsFormShown] = useState(false);
   const [inputVal, setInputVal] = useState('');
+  const inputRef = useRef(null);
   const dispatch = useDispatch();
 
   const showCardSubmitForm = () => {
@@ -20,7 +21,7 @@ export default function CardMaker() {
     if (inputVal) {
       dispatch(
         makeCard({
-          id: uniqueId(),
+          id: 'cards-' + uniqueId(),
           title: inputVal,
           details: [1, 2, 3],
           status: 'progress',
