@@ -2,6 +2,7 @@ import {
   MAKE_NEW_CARD,
   DELETE_CARD,
   MOVE_CARD,
+  UPDATE_TXT,
 } from '../action-types/actionTypes';
 
 const initialState = {
@@ -32,6 +33,20 @@ export default function cardReducer(state = initialState, action) {
     const tmpArr = state.cards.map((elem) => {
       if (elem.id === action.payload.id) {
         elem.status = action.payload.status;
+      }
+      return elem;
+    });
+    return {
+      ...state,
+      cards: tmpArr,
+    };
+  }
+
+  // eslint-disable-next-line
+  if (action.type == UPDATE_TXT) {
+    const tmpArr = state.cards.map((elem) => {
+      if (elem.id === action.payload.id) {
+        elem.txtArea = action.payload.txtArea;
       }
       return elem;
     });

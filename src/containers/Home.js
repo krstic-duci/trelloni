@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { CardStatus } from '../constants';
 import styles from '../css/home.module.css';
-import Cards from './Cards';
+import CardWrapper from './CardWrapper';
 import CardMaker from '../components/CardMaker';
 
 export default function Home() {
@@ -22,11 +22,17 @@ export default function Home() {
         <CardMaker />
 
         <div className={styles['cards-container']}>
-          <Cards titleHeadline='New' cardsToPrint={cardsInNew} />
+          <CardWrapper titleHeadline='New' cardsToPrint={cardsInNew} />
 
-          <Cards titleHeadline='In Progress' cardsToPrint={cardsInProgress} />
+          <CardWrapper
+            titleHeadline='In Progress'
+            cardsToPrint={cardsInProgress}
+          />
 
-          <Cards titleHeadline='Finished' cardsToPrint={cardsInFinished} />
+          <CardWrapper
+            titleHeadline='Finished'
+            cardsToPrint={cardsInFinished}
+          />
         </div>
       </div>
     </section>

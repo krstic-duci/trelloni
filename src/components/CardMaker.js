@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { makeCard } from '../store/actions/cardAction';
+import { makeCardAction } from '../store/actions/cardAction';
 import { uniqueId } from '../utils/helpers.js';
 
 export default function CardMaker() {
@@ -19,11 +19,12 @@ export default function CardMaker() {
   const makingNewCard = () => {
     if (inputVal) {
       dispatch(
-        makeCard({
+        makeCardAction({
           id: 'cards-' + uniqueId(),
           title: inputVal,
           details: [1, 2, 3],
           status: 'new',
+          txtArea: '',
         }),
       );
     }
