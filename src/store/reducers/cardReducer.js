@@ -38,7 +38,7 @@ export default function cardReducer(state = initialState, action) {
     });
     return {
       ...state,
-      cards: tmpArr,
+      cards: [...tmpArr],
     };
   }
 

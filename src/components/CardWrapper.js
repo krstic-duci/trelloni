@@ -1,5 +1,5 @@
 import React from 'react';
-import CardSingle from '../components/CardSingle';
+import CardSingle from './CardSingle';
 
 export default function CardWrapper({ titleHeadline, cardsToPrint }) {
   return (

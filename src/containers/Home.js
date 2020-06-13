@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { CardStatus } from '../constants';
 import styles from '../css/home.module.css';
-import CardWrapper from './CardWrapper';
+import CardWrapper from '../components/CardWrapper';
 import CardMaker from '../components/CardMaker';
 
 export default function Home() {
