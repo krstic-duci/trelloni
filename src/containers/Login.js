@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from '../css/login.module.css';
-import authAction from '../store/actions/authAction';
+import { authAction } from '../store/actions/authAction';
 
 export default function Login() {
   const dispatch = useDispatch();

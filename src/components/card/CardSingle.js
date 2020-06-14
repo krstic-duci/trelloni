@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import styles from '../css/cardsSingle.module.css';
+import React from 'react';
+import styles from '../../css/cardsSingle.module.css';
 import CardShift from './CardShift';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   deleteCardAction,
   updateCardTxtAction,
-} from '../store/actions/cardAction';
+} from '../../store/actions/cardAction';
 import debounce from 'lodash/debounce';
 
 export default function CardSingle({ titleCard, id, status, txtArea }) {
-  // const txtArea = useSelector((state) => state.cardReducer.txtArea);
   const dispatch = useDispatch();
   const deleteCardById = () => {
     dispatch(deleteCardAction(id));

@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { CardStatus } from '../constants';
 import styles from '../css/home.module.css';
-import CardWrapper from '../components/CardWrapper';
-import CardMaker from '../components/CardMaker';
+import CardWrapper from '../components/card/CardWrapper';
+import CardMaker from '../components/card/CardMaker';
 
 export default function Home() {
   const cards = useSelector((state) => state.cardReducer.cards);
@@ -16,7 +16,9 @@ export default function Home() {
   );
   return (
     <section>
-      <h1>Welcome to Trelloni</h1>
+      <h1 style={{ textAlign: 'center', marginTop: '40px' }}>
+        Welcome to Trelloni
+      </h1>
 
       <div>
         <CardMaker />

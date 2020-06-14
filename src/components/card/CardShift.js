@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { moveCardAction } from '../store/actions/cardAction';
-import { CardStatus } from '../constants';
+import { moveCardAction } from '../../store/actions/cardAction';
+import { CardStatus } from '../../constants';
 
 export default function CardShift({ id, status }) {
   const dispatch = useDispatch();

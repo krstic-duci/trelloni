@@ -1,20 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Login from '../containers/Login';
 import Home from '../containers/Home';
-import Boards from '../containers/Boards';
+import Products from '../containers/Products';
 import Profile from '../containers/Profile';
 import NoMatch from '../components/NoMatch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ProductSingle from '../components/product/ProductSingle';
 
-function PrivateRoute({ children }) {
+function PrivateRoute({ component: Component, ...rest }) {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
   return (
     <>
       <Header />
-      <Route render={() => (isAuth ? children : <Redirect to='/login' />)} />
+      <Route
+        {...rest}
+        render={(props) =>
+          isAuth ? <Component {...props} /> : <Redirect to='/login' />
+        }
+      />
       <Footer />
     </>
   );
@@ -22,24 +28,20 @@ function PrivateRoute({ children }) {
 
 export default function Router() {
   return (
-    <BrowserRouter>
+    <>
       <Switch>
         <Route path='/login' component={Login} />
 
-        <PrivateRoute exact path='/'>
-          <Home />
-        </PrivateRoute>
+        <PrivateRoute exact path='/' component={Home} />
 
-        <PrivateRoute path='/boards'>
-          <Boards />
-        </PrivateRoute>
+        <PrivateRoute exact path='/products/:id' component={ProductSingle} />
 
-        <PrivateRoute path='/profile'>
-          <Profile />
-        </PrivateRoute>
+        <PrivateRoute path='/products' component={Products} />
+
+        <PrivateRoute path='/profile' component={Profile} />
 
         <Route path='*' component={NoMatch} />
       </Switch>
-    </BrowserRouter>
+    </>
   );
 }

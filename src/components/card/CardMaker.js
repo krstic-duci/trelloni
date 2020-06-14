@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { makeCardAction } from '../store/actions/cardAction';
-import { uniqueId } from '../utils/helpers.js';
+import { makeCardAction } from '../../store/actions/cardAction';
+import { uniqueId } from '../../utils/helpers.js';
 
 export default function CardMaker() {
   const [isFormShown, setIsFormShown] = useState(false);
@@ -31,8 +31,8 @@ export default function CardMaker() {
     setInputVal('');
   };
   return (
-    <div>
-      <button onClick={showCardSubmitForm}>
+    <div style={{ margin: '0 25px 15px' }}>
+      <button onClick={showCardSubmitForm} style={{ marginBottom: '5px' }}>
         {isFormShown ? 'Close form' : 'Show form'}
       </button>
       <form

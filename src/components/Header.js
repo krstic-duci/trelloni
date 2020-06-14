@@ -9,7 +9,7 @@ export default function Header() {
         <Link to='/'>Home</Link>
       </li>
       <li>
-        <Link to='/boards'>Boards</Link>
+        <Link to='/products'>Products</Link>
       </li>
       <li>
         <Link to='/profile'>Profile</Link>
