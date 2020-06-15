@@ -7,13 +7,17 @@ import CardMaker from '../components/card/CardMaker';
 
 export default function Home() {
   const cards = useSelector((state) => state.cardReducer.cards);
-  const cardsInNew = cards.filter((elem) => elem.status === CardStatus.NEW);
-  const cardsInProgress = cards.filter(
-    (elem) => elem.status === CardStatus.PROGRESS,
-  );
-  const cardsInFinished = cards.filter(
-    (elem) => elem.status === CardStatus.FINISHED,
-  );
+  // const cardsInNew = cards.filter((elem) => elem.status === CardStatus.NEW);
+  console.log(cards);
+  const cardsInNew = [...cards[CardStatus.NEW]];
+  // const cardsInProgress = cards.filter(
+  //   (elem) => elem.status === CardStatus.PROGRESS,
+  // );
+  const cardsInProgress = [...cards[CardStatus.PROGRESS]];
+  // const cardsInFinished = cards.filter(
+  //   (elem) => elem.status === CardStatus.FINISHED,
+  // );
+  const cardsInFinished = [...cards[CardStatus.FINISHED]];
   return (
     <section>
       <h1 style={{ textAlign: 'center', marginTop: '40px' }}>

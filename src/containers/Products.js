@@ -36,7 +36,15 @@ export default function Products() {
                 </Link>
               ))
             ) : (
-              <p style={{ textAlign: 'center' }}>Loading...</p>
+              <p
+                style={{
+                  textAlign: 'center',
+                  color: 'red',
+                  margin: '50px 0',
+                  fontSize: '25px',
+                }}>
+                Loading...
+              </p>
             )}
           </section>
         </Route>

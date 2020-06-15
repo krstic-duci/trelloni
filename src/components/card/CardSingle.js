@@ -26,11 +26,14 @@ export default function CardSingle({ titleCard, id, status, txtArea }) {
       <h3>{titleCard}</h3>
       <CardShift id={id} status={status} />
       <div>
-        <p>{txtArea}</p>
-        <textarea
+        {/* <textarea
           placeholder='Type text...'
           // value={txtArea}
-          onChange={updateTxtArea}></textarea>
+          onChange={updateTxtArea}></textarea> */}
+        <textarea
+          placeholder='Type text...'
+          defaultValue={txtArea}
+          onKeyDown={updateTxtArea}></textarea>
       </div>
       <button onClick={deleteCardById}>X</button>
     </div>
