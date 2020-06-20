@@ -6,9 +6,9 @@ import { requestProductAction } from '../store/actions/productAction';
 import styles from '../css/products.module.css';
 
 export default function Products() {
-  let match = useRouteMatch();
+  const match = useRouteMatch();
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.productReducer.products);
+  const products = useSelector((state) => state.product.products);
 
   useEffect(() => {
     dispatch(requestProductAction());

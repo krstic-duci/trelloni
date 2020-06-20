@@ -1,7 +1,25 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+// import { fetchSingleProduct } from '../../api';
 
 export default function ProductSingle() {
-  let { id } = useParams();
-  return <h3>Requested topic ID: {id}</h3>;
+  const { id } = useParams();
+  return (
+    <>
+      current id is {id}
+      {/* {singleProduct.length > 0 ? (
+        <p>Duca</p>
+      ) : (
+        <p
+          style={{
+            textAlign: 'center',
+            color: 'red',
+            margin: '50px 0',
+            fontSize: '25px',
+          }}>
+          Loading...
+        </p>
+      )} */}
+    </>
+  );
 }

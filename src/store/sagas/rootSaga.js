@@ -1,6 +1,6 @@
-import watcherProductSaga from './productSaga';
+import watcherProductsSaga from './productSaga';
 import { all } from 'redux-saga/effects';
 
 export default function* rootSaga() {
-  yield all([watcherProductSaga()]);
+  yield all([watcherProductsSaga()]);
 }

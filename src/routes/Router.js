@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 import ProductSingle from '../components/product/ProductSingle';
 
 function PrivateRoute({ component: Component, ...rest }) {
-  const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   return (
     <>
       <Header />

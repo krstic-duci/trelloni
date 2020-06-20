@@ -1,15 +1,15 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { REQUEST_PRODUCT } from '../action-types/actionTypes';
+import { REQUEST_PRODUCTS } from '../action-types/actionTypes';
 import { receiveProductAction } from '../actions/productAction';
 import { fetchProducts } from '../../api';
 
 // watcher saga
 export default function* watcherProductSaga() {
-  yield takeLatest(REQUEST_PRODUCT, workerProductSaga);
+  yield takeLatest(REQUEST_PRODUCTS, workerProductsSaga);
 }
 
 // worker saga
-function* workerProductSaga() {
+function* workerProductsSaga() {
   try {
     const data = yield call(fetchProducts);
     yield put(receiveProductAction(data));

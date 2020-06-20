@@ -1,11 +1,10 @@
-import { RECEIVE_PRODUCT } from '../action-types/actionTypes';
+import { RECEIVE_PRODUCTS } from '../action-types/actionTypes';
 const initialState = {
   products: [],
 };
 
 export default function productReducer(state = initialState, action) {
-  if (action.type === RECEIVE_PRODUCT) {
-    console.log(action.payload);
+  if (action.type === RECEIVE_PRODUCTS) {
     return {
       ...state,
       products: [...action.payload],
