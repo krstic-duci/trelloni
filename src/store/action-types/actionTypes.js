@@ -6,3 +6,5 @@ export const MOVE_CARD = 'MOVE_CARD';
 export const UPDATE_TXT = 'UPDATE_TXT';
 export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS';
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
+export const PREV_PRODUCT = 'PREV_PRODUCT';
+export const NEXT_PRODUCT = 'NEXT_PRODUCT';

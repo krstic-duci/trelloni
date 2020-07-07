@@ -22,3 +22,13 @@
   max-width: 200px;
   height: auto;
 }
+
+.pagination {
+  text-align: center;
+  margin: 30px 0 50px;
+}
+
+.pagination > a {
+  margin: 0 15px;
+  cursor: pointer;
+}

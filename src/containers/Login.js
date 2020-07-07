@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styles from '../css/login.module.css';
 import { authAction } from '../store/actions/authAction';
-import { makeProducts } from '../utils/helpers';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -15,7 +14,6 @@ export default function Login() {
     // Simulate the auth
     history.push('/');
   };
-  // useEffect(() => makeProducts());
   return (
     <div className={styles['login-container']}>
       <h1>Login</h1>

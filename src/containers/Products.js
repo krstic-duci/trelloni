@@ -2,17 +2,34 @@ import React, { useEffect } from 'react';
 import { useRouteMatch, Switch, Route, Link } from 'react-router-dom';
 import ProductSingle from '../components/product/ProductSingle';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestProductAction } from '../store/actions/productAction';
+import {
+  requestProductAction,
+  prevProductAction,
+  nextProductAction,
+} from '../store/actions/productAction';
 import styles from '../css/products.module.css';
 
 export default function Products() {
   const match = useRouteMatch();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
+  const pages = useSelector((state) => state.product.pages);
+
+  let [prevPage, nextPage] = pages;
+
+  console.log(nextPage);
 
   useEffect(() => {
     dispatch(requestProductAction());
   }, [dispatch]);
+
+  const prevProduct = () => {
+    // dispatch(prevProductAction);
+  };
+
+  const nextProduct = () => {
+    // dispatch(nextProductAction);
+  };
 
   return (
     <>
@@ -47,6 +64,10 @@ export default function Products() {
               </p>
             )}
           </section>
+          <div className={styles['pagination']}>
+            <Link to={`${match.url}?_page=${prevPage}`}>Prev</Link>
+            <Link to={`${match.url}?_page=${nextPage}`}>Next</Link>
+          </div>
         </Route>
       </Switch>
     </>

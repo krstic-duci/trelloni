@@ -1,6 +1,7 @@
-import { RECEIVE_PRODUCTS } from '../action-types/actionTypes';
+import { RECEIVE_PRODUCTS, PREV_PRODUCT } from '../action-types/actionTypes';
 const initialState = {
   products: [],
+  pages: [],
 };
 
 export default function productReducer(state = initialState, action) {
@@ -8,6 +9,13 @@ export default function productReducer(state = initialState, action) {
     return {
       ...state,
       products: [...action.payload],
+    };
+  }
+  if (action.type === PREV_PRODUCT) {
+    console.log('daaa');
+    return {
+      ...state,
+      pages: [...action.payload],
     };
   }
   return state;
