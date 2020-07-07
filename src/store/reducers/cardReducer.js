@@ -4,81 +4,46 @@ import {
   MOVE_CARD,
   UPDATE_TXT,
 } from '../action-types/actionTypes';
-import { customFilter } from '../../utils/helpers';
-
-// const initialState = {
-//   cards: [],
-// };
 
 const initialState = {
-  cards: {
-    'new': [],
-    'progress': [],
-    'finished': [],
-  },
+  cards: [],
 };
 
 export default function cardReducer(state = initialState, action) {
   // eslint-disable-next-line
   if (action.type == MAKE_NEW_CARD) {
+    const newCard = action.payload;
     return {
       ...state,
-      cards: {
-        ...state.cards,
-        new: [...state.cards.new, action.payload],
-      },
+      cards: [...state.cards, newCard],
     };
   }
   // eslint-disable-next-line
   if (action.type == DELETE_CARD) {
-    let filteredCards = customFilter(
-      state.cards,
-      action.payload,
-      true,
-      false,
-      false,
-    );
+    let tmpArr = state.cards.filter((elem) => elem.id !== action.payload);
     return {
       ...state,
-      cards: {
-        ...state.cards,
-        [filteredCards.whatColumn]: filteredCards.data,
-      },
+      cards: tmpArr,
     };
   }
 
   // eslint-disable-next-line
   if (action.type == MOVE_CARD) {
-    let tmpArr = customFilter(state.cards, action.payload, false, true, false);
+    let tmpArr = state.cards.map((elem) => {
+      if (elem.id === action.payload.id) {
+        elem.status = action.payload.status;
+      }
+      return elem;
+    });
     return {
       ...state,
-      cards: {
-        ...state.cards,
-        [tmpArr.whatColumn]: [...state.cards[tmpArr.whatColumn], tmpArr.data],
-      },
+      cards: tmpArr,
     };
   }
 
   // eslint-disable-next-line
   if (action.type == UPDATE_TXT) {
-    let updateTxtArr = customFilter(
-      state.cards,
-      action.payload,
-      false,
-      false,
-      true,
-    );
-    console.log(updateTxtArr);
-    // return {
-    //   ...state,
-    //   cards: {
-    //     ...state.cards,
-    //     [updateTxtArr.status]: [
-    //       ...state.cards[updateTxtArr.status],
-    //       updateTxtArr,
-    //     ],
-    //   },
-    // };
+    console.log('update text');
   }
 
   return state;

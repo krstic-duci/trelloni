@@ -1,3 +1,5 @@
+import faker from 'faker';
+
 function makeId() {
   let _id = 0;
   return function innerMakeId() {
@@ -6,6 +8,26 @@ function makeId() {
 }
 
 export let uniqueId = makeId();
+
+export function makeProducts() {
+  let url;
+  let products;
+  let arr = [];
+  for (let x = 1; x < 151; x++) {
+    products = {};
+    url = `https://picsum.photos/id/${x}/200`;
+    products.id = faker.random.uuid();
+    products.color = faker.commerce.color();
+    products.title = faker.commerce.productName();
+    products.product = faker.commerce.product();
+    products.text = faker.lorem.text();
+    products.price = faker.commerce.price();
+    products.image = `${url}`;
+
+    arr.push(products);
+  }
+  console.log(JSON.stringify(arr));
+}
 
 /**
  * @description Handler for cards that needs to be deleted, moved and
