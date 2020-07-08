@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 export const PRODUCT_API = 'http://localhost:5000';
-export const fetchProducts = async (page = 1) => {
+export const fetchProducts = async (page) => {
   try {
     const resData = await axios.get(`${PRODUCT_API}/products?_page=${page}`);
-    console.log(resData);
     return resData;
   } catch (error) {
     throw new Error(`Error while fetching products ${error}`);

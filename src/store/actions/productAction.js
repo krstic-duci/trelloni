@@ -11,21 +11,23 @@ export function requestProductAction() {
   };
 }
 
-export function receiveProductAction(payload) {
+export function receiveProductAction(data, headers) {
   return {
     type: RECEIVE_PRODUCTS,
-    payload,
+    payload: {
+      data,
+      headers,
+    },
   };
 }
 
-export function prevProductAction(payload) {
+export function prevProductAction() {
   return {
     type: PREV_PRODUCT,
-    payload,
   };
 }
 
-export function nextProductAction(payload) {
+export function nextProductAction() {
   return {
     type: NEXT_PRODUCT,
   };

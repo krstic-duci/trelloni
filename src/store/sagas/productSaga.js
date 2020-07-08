@@ -1,34 +1,33 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
-import { REQUEST_PRODUCTS } from '../action-types/actionTypes';
+import { takeLatest, call, put, select, takeEvery } from 'redux-saga/effects';
+import {
+  REQUEST_PRODUCTS,
+  PREV_PRODUCT,
+  NEXT_PRODUCT,
+} from '../action-types/actionTypes';
 import {
   receiveProductAction,
   prevProductAction,
+  nextProductAction,
 } from '../actions/productAction';
 import { fetchProducts } from '../../api';
+import { getPrevPage, getNextPage, getTotalPage } from './selectors';
 
 // watcher saga
 export default function* watcherProductSaga() {
-  yield takeLatest(REQUEST_PRODUCTS, workerProductsSaga);
+  yield takeEvery(REQUEST_PRODUCTS, workerProductsSaga);
 }
 
 // worker saga
-function* workerProductsSaga() {
+function* workerProductsSaga(action) {
   try {
-    const apiData = yield call(fetchProducts);
-    // grab headers for previous/next page
-    let arrForPrevNextPage = [];
-    let apiDataHeaders = apiData.headers.link.split(',');
-    apiDataHeaders.pop();
-    apiDataHeaders.map((elem) => {
-      let tmp = elem.split(';');
-      arrForPrevNextPage.push(tmp[0]);
-      return arrForPrevNextPage;
-    });
-    // let pagePrev = arrForPrevNextPage[0];
-    // let pageNext = arrForPrevNextPage[1];
-    console.log(arrForPrevNextPage);
-    yield put(receiveProductAction(apiData.data));
-    yield put(prevProductAction(arrForPrevNextPage));
+    // FIXME: page needs to be dynamic
+    let prevPage = yield select(getPrevPage);
+    let nextPage = yield select(getNextPage);
+    let totalPages = yield select(getTotalPage);
+    let currentPage = 1;
+
+    const { data, headers } = yield call(fetchProducts, currentPage);
+    yield put(receiveProductAction(data, headers));
   } catch (error) {
     throw new Error('error in productSaga', error);
   }

@@ -13,22 +13,21 @@ export default function Products() {
   const match = useRouteMatch();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
-  const pages = useSelector((state) => state.product.pages);
-
-  let [prevPage, nextPage] = pages;
-
-  console.log(nextPage);
+  const prevPage = useSelector((state) => state.product.prevPage);
+  const nextPage = useSelector((state) => state.product.nextPage);
 
   useEffect(() => {
     dispatch(requestProductAction());
   }, [dispatch]);
 
   const prevProduct = () => {
-    // dispatch(prevProductAction);
+    dispatch(prevProductAction());
+    dispatch(requestProductAction());
   };
 
   const nextProduct = () => {
-    // dispatch(nextProductAction);
+    dispatch(nextProductAction());
+    dispatch(requestProductAction());
   };
 
   return (
@@ -65,8 +64,12 @@ export default function Products() {
             )}
           </section>
           <div className={styles['pagination']}>
-            <Link to={`${match.url}?_page=${prevPage}`}>Prev</Link>
-            <Link to={`${match.url}?_page=${nextPage}`}>Next</Link>
+            <Link onClick={prevProduct} to={`${match.url}?_page=${prevPage}`}>
+              Prev
+            </Link>
+            <Link onClick={nextProduct} to={`${match.url}?_page=${nextPage}`}>
+              Next
+            </Link>
           </div>
         </Route>
       </Switch>
