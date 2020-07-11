@@ -3,6 +3,7 @@ import {
   RECEIVE_PRODUCTS,
   PREV_PRODUCT,
   NEXT_PRODUCT,
+  ADD_PRODUCT,
 } from '../action-types/actionTypes';
 
 export function requestProductAction() {
@@ -30,5 +31,12 @@ export function prevProductAction() {
 export function nextProductAction() {
   return {
     type: NEXT_PRODUCT,
+  };
+}
+
+export function addProductAction(payload) {
+  return {
+    type: ADD_PRODUCT,
+    payload,
   };
 }

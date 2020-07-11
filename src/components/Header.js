@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../css/header.module.css';
+import ProductCart from '../components/product/ProductCart';
 
 export default function Header() {
   return (
@@ -13,6 +14,9 @@ export default function Header() {
       </li>
       <li>
         <Link to='/profile'>Profile</Link>
+      </li>
+      <li>
+        <ProductCart />
       </li>
     </ul>
   );

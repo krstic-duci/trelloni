@@ -1,4 +1,4 @@
-import { takeLatest, call, put, select, takeEvery } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 import {
   REQUEST_PRODUCTS,
   PREV_PRODUCT,
@@ -14,7 +14,7 @@ import { getPrevPage, getNextPage, getTotalPage } from './selectors';
 
 // watcher saga
 export default function* watcherProductSaga() {
-  yield takeEvery(REQUEST_PRODUCTS, workerProductsSaga);
+  yield takeLatest(REQUEST_PRODUCTS, workerProductsSaga);
 }
 
 // worker saga

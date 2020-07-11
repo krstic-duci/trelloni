@@ -1,0 +1,33 @@
+.singleProductContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.singleProductContainer div:nth-child(1) {
+  flex: 0 0 40%;
+  padding-right: 25px;
+}
+
+.singleProductContainer div:nth-child(1) figure {
+  margin: 20px 0 0;
+}
+
+.singleProductContainer div:nth-child(2) {
+  flex: 0 0 20%;
+}
+
+.singleProductContainer div:nth-child(3) {
+  flex: 0 0 100%;
+  text-align: center;
+}
+
+.singleProductContainer div:nth-child(3) button {
+  margin-top: 15px;
+  padding: 5px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+}

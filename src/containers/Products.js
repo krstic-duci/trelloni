@@ -8,6 +8,7 @@ import {
   nextProductAction,
 } from '../store/actions/productAction';
 import styles from '../css/products.module.css';
+import { useState } from 'react';
 
 export default function Products() {
   const match = useRouteMatch();
@@ -15,6 +16,7 @@ export default function Products() {
   const products = useSelector((state) => state.product.products);
   const prevPage = useSelector((state) => state.product.prevPage);
   const nextPage = useSelector((state) => state.product.nextPage);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     dispatch(requestProductAction());
@@ -22,11 +24,13 @@ export default function Products() {
 
   const prevProduct = () => {
     dispatch(prevProductAction());
+    setCurrentPage(prevPage);
     dispatch(requestProductAction());
   };
 
   const nextProduct = () => {
     dispatch(nextProductAction());
+    setCurrentPage(nextPage);
     dispatch(requestProductAction());
   };
 
@@ -36,7 +40,7 @@ export default function Products() {
         <Route path={`${match.path}/:id`}>
           <ProductSingle />
         </Route>
-        <Route path={match.path}>
+        <Route path={`${match.path}`}>
           <section className={styles['products-wrapper']}>
             {products.length > 0 ? (
               products.map((elem, i) => (
