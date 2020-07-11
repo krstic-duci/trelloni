@@ -17,8 +17,6 @@ export default function ProductSingle() {
     setTimeout(() => setAddedToCartText(false), 3000);
   };
 
-  const backToProducts = () => {};
-
   return (
     <>
       <div className={styles['singleProductContainer']}>

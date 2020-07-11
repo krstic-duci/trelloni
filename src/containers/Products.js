@@ -8,7 +8,6 @@ import {
   nextProductAction,
 } from '../store/actions/productAction';
 import styles from '../css/products.module.css';
-import { useState } from 'react';
 
 export default function Products() {
   const match = useRouteMatch();
@@ -16,22 +15,22 @@ export default function Products() {
   const products = useSelector((state) => state.product.products);
   const prevPage = useSelector((state) => state.product.prevPage);
   const nextPage = useSelector((state) => state.product.nextPage);
-  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = useSelector((state) => state.product.totalPages);
 
   useEffect(() => {
     dispatch(requestProductAction());
   }, [dispatch]);
 
   const prevProduct = () => {
+    if (prevPage === 1) return;
+
     dispatch(prevProductAction());
-    setCurrentPage(prevPage);
-    dispatch(requestProductAction());
   };
 
   const nextProduct = () => {
+    if (nextPage === totalPages + 1) return;
+
     dispatch(nextProductAction());
-    setCurrentPage(nextPage);
-    dispatch(requestProductAction());
   };
 
   return (
@@ -68,10 +67,26 @@ export default function Products() {
             )}
           </section>
           <div className={styles['pagination']}>
-            <Link onClick={prevProduct} to={`${match.url}?_page=${prevPage}`}>
+            <Link
+              onClick={prevProduct}
+              to={`${match.url}?_page=${prevPage === 1 ? 1 : prevPage - 1}`}
+              style={
+                prevPage === 1
+                  ? { 'cursor': 'not-allowed' }
+                  : { 'cursor': 'pointer' }
+              }>
               Prev
             </Link>
-            <Link onClick={nextProduct} to={`${match.url}?_page=${nextPage}`}>
+            <Link
+              onClick={nextProduct}
+              to={`${match.url}?_page=${
+                nextPage === totalPages + 1 ? totalPages : nextPage
+              }`}
+              style={
+                nextPage === totalPages + 1
+                  ? { 'cursor': 'not-allowed' }
+                  : { 'cursor': 'pointer' }
+              }>
               Next
             </Link>
           </div>
