@@ -14,7 +14,7 @@ export default function ProductSingle() {
   const addProductToCart = () => {
     setAddedToCartText(true);
     dispatch(addProductAction(+singleProduct.price));
-    setTimeout(() => setAddedToCartText(false), 3000);
+    setTimeout(() => setAddedToCartText(false), 2000);
   };
 
   return (

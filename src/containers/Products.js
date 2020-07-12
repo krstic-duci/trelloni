@@ -6,7 +6,9 @@ import {
   requestProductAction,
   prevProductAction,
   nextProductAction,
+  productCleanupAction,
 } from '../store/actions/productAction';
+import ProductFilter from '../components/product/ProductFilter';
 import styles from '../css/products.module.css';
 
 export default function Products() {
@@ -19,6 +21,7 @@ export default function Products() {
 
   useEffect(() => {
     dispatch(requestProductAction());
+    return () => dispatch(productCleanupAction());
   }, [dispatch]);
 
   const prevProduct = () => {
@@ -41,6 +44,7 @@ export default function Products() {
         </Route>
         <Route path={`${match.path}`}>
           <section className={styles['products-wrapper']}>
+            <ProductFilter />
             {products.length > 0 ? (
               products.map((elem, i) => (
                 <Link

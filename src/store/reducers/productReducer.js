@@ -3,14 +3,17 @@ import {
   PREV_PRODUCT,
   NEXT_PRODUCT,
   ADD_PRODUCT,
+  PRODUCT_CLEAN,
+  CHANGE_FILTER,
 } from '../action-types/actionTypes';
 
 const initialState = {
   products: [],
   prevPage: 1,
   nextPage: 2,
-  totalPages: null,
+  totalPages: 0,
   totalPrice: 0,
+  filterVal: 'name',
 };
 
 export default function productReducer(state = initialState, action) {
@@ -47,6 +50,21 @@ export default function productReducer(state = initialState, action) {
     return {
       ...state,
       totalPrice: priceForCart,
+    };
+  }
+
+  if (action.type === PRODUCT_CLEAN) {
+    return {
+      ...state,
+      prevPage: 1,
+      nextPage: 2,
+    };
+  }
+
+  if (action.type === CHANGE_FILTER) {
+    return {
+      ...state,
+      filterVal: action.payload,
     };
   }
 

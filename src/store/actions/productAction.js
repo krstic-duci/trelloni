@@ -4,6 +4,8 @@ import {
   PREV_PRODUCT,
   NEXT_PRODUCT,
   ADD_PRODUCT,
+  PRODUCT_CLEAN,
+  CHANGE_FILTER,
 } from '../action-types/actionTypes';
 
 export function requestProductAction() {
@@ -37,6 +39,19 @@ export function nextProductAction() {
 export function addProductAction(payload) {
   return {
     type: ADD_PRODUCT,
+    payload,
+  };
+}
+
+export function productCleanupAction() {
+  return {
+    type: PRODUCT_CLEAN,
+  };
+}
+
+export function changeFilterAction(payload) {
+  return {
+    type: CHANGE_FILTER,
     payload,
   };
 }
