@@ -4,45 +4,47 @@ import {
   MOVE_CARD,
   UPDATE_TXT,
 } from '../action-types/actionTypes';
+import { CardStatus } from '../../constants';
 
 const initialState = {
-  cards: [],
+  [CardStatus.NEW]: [],
+  [CardStatus.PROGRESS]: [],
+  [CardStatus.FINISHED]: [],
 };
 
-export default function cardReducer(state = initialState, action) {
+export default function cardReducer(state = initialState, { type, payload }) {
   // eslint-disable-next-line
-  if (action.type == MAKE_NEW_CARD) {
-    const newCard = action.payload;
+  if (type == MAKE_NEW_CARD) {
     return {
       ...state,
-      cards: [...state.cards, newCard],
+      [CardStatus.NEW]: [...state[CardStatus.NEW], payload],
     };
   }
   // eslint-disable-next-line
-  if (action.type == DELETE_CARD) {
-    let tmpArr = state.cards.filter((elem) => elem.id !== action.payload);
+  if (type == DELETE_CARD) {
+    let tmpArr = state[payload.status].filter((elem) => elem.id !== payload.id);
     return {
       ...state,
-      cards: tmpArr,
-    };
-  }
-
-  // eslint-disable-next-line
-  if (action.type == MOVE_CARD) {
-    let tmpArr = state.cards.map((elem) => {
-      if (elem.id === action.payload.id) {
-        elem.status = action.payload.status;
-      }
-      return elem;
-    });
-    return {
-      ...state,
-      cards: tmpArr,
+      [payload.status]: [...tmpArr],
     };
   }
 
   // eslint-disable-next-line
-  if (action.type == UPDATE_TXT) {
+  if (type == MOVE_CARD) {
+    let prevTmpArr = state[payload.prevStatus]; // previous elements
+    let prevElemIdx = prevTmpArr.findIndex((elem) => elem.id === payload.id);
+    let movedCard = prevTmpArr.splice(prevElemIdx, 1)[0];
+    movedCard.status = payload.nextStatus;
+    let nextTmpArr = [...state[payload.nextStatus], movedCard]; // current elements
+    return {
+      ...state,
+      [payload.prevStatus]: prevTmpArr,
+      [payload.nextStatus]: nextTmpArr,
+    };
+  }
+
+  // eslint-disable-next-line
+  if (type == UPDATE_TXT) {
     console.log('update text');
   }
 

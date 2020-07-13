@@ -5,11 +5,11 @@ import { CardStatus } from '../../constants';
 
 export default function CardShift({ id, status }) {
   const dispatch = useDispatch();
-  const selectValue = (e) => {
-    dispatch(moveCardAction({ id: id, status: e.target.value }));
+  const selectValue = (e, prevStatus) => {
+    dispatch(moveCardAction({ id, nextStatus: e.target.value, prevStatus }));
   };
   return (
-    <select onChange={(e) => selectValue(e)} value={status}>
+    <select onChange={(e) => selectValue(e, status)} value={status}>
       <option value={CardStatus.NEW}>new</option>
       <option value={CardStatus.PROGRESS}>in progress</option>
       <option value={CardStatus.FINISHED}>finished</option>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { FilterValues } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../css/productFilter.module.css';
 import { changeFilterAction } from '../../store/actions/productAction';
+import { FilterValues } from '../../constants';
+import styles from '../../css/productFilter.module.css';
 
 export default function ProductFilter() {
   const filterVal = useSelector((state) => state.product.filterVal);

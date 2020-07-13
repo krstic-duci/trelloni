@@ -1,3 +1,10 @@
+.loading-wrapper {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
 .products-wrapper {
   display: flex;
   flex-flow: row wrap;

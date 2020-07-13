@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../css/header.module.css';
 import ProductCart from '../components/product/ProductCart';
+import styles from '../css/header.module.css';
 
 export default function Header() {
   return (

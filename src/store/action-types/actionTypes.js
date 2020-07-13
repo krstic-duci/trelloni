@@ -11,3 +11,4 @@ export const NEXT_PRODUCT = 'NEXT_PRODUCT';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const PRODUCT_CLEAN = 'PRODUCT_CLEAN';
 export const CHANGE_FILTER = 'CHANGE_FILTER';
+export const ERROR_PRODUCT = 'ERROR_PRODUCT';

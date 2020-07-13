@@ -5,24 +5,35 @@ import {
   ADD_PRODUCT,
   PRODUCT_CLEAN,
   CHANGE_FILTER,
+  REQUEST_PRODUCTS,
+  ERROR_PRODUCT,
 } from '../action-types/actionTypes';
 
 const initialState = {
   products: [],
+  productsLoading: false,
   prevPage: 1,
   nextPage: 2,
   totalPages: 0,
   totalPrice: 0,
   filterVal: '',
+  errorProduct: null,
 };
 
 export default function productReducer(state = initialState, action) {
+  if (action.type === REQUEST_PRODUCTS) {
+    return {
+      ...state,
+      productsLoading: true,
+    };
+  }
   if (action.type === RECEIVE_PRODUCTS) {
     const totalPages = +action.payload.headers['x-total-count'] / 10;
     return {
       ...state,
       products: [...action.payload.data],
       totalPages: totalPages,
+      productsLoading: false,
     };
   }
 
@@ -68,6 +79,14 @@ export default function productReducer(state = initialState, action) {
       prevPage: 1,
       nextPage: 2,
       filterVal: action.payload,
+    };
+  }
+
+  if (action.type === ERROR_PRODUCT) {
+    return {
+      ...state,
+      productsLoading: false,
+      errorProduct: 'Error fetching products, please try again later...',
     };
   }
 

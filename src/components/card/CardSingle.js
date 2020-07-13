@@ -1,17 +1,17 @@
 import React from 'react';
-import styles from '../../css/cardsSingle.module.css';
-import CardShift from './CardShift';
+import debounce from 'lodash/debounce';
 import { useDispatch } from 'react-redux';
 import {
   deleteCardAction,
   updateCardTxtAction,
 } from '../../store/actions/cardAction';
-import debounce from 'lodash/debounce';
+import CardShift from './CardShift';
+import styles from '../../css/cardsSingle.module.css';
 
 export default function CardSingle({ titleCard, id, status, txtArea }) {
   const dispatch = useDispatch();
   const deleteCardById = () => {
-    dispatch(deleteCardAction(id));
+    dispatch(deleteCardAction({ id, status }));
   };
   const updateTxtArea = (e) => {
     const val = e.target.value;

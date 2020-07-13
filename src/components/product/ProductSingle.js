@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import styles from '../../css/singleProduct.module.css';
 import { addProductAction } from '../../store/actions/productAction';
+import styles from '../../css/singleProduct.module.css';
 
 export default function ProductSingle() {
   const { id } = useParams();

@@ -1,20 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { CardStatus } from '../constants';
-import styles from '../css/home.module.css';
 import CardWrapper from '../components/card/CardWrapper';
 import CardMaker from '../components/card/CardMaker';
+import { CardStatus } from '../constants';
+import styles from '../css/home.module.css';
 
 export default function Home() {
-  const cards = useSelector((state) => state.card.cards);
+  const cardsInNew = useSelector((state) => state.card[CardStatus.NEW]);
+  const cardsInProgress = useSelector(
+    (state) => state.card[CardStatus.PROGRESS],
+  );
+  const cardsInFinished = useSelector(
+    (state) => state.card[CardStatus.FINISHED],
+  );
 
-  const cardsInNew = cards.filter((elem) => elem.status === CardStatus.NEW);
-  const cardsInProgress = cards.filter(
-    (elem) => elem.status === CardStatus.PROGRESS,
-  );
-  const cardsInFinished = cards.filter(
-    (elem) => elem.status === CardStatus.FINISHED,
-  );
   return (
     <section>
       <h1 style={{ textAlign: 'center', marginTop: '40px' }}>

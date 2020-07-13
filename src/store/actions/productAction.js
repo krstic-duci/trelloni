@@ -6,11 +6,13 @@ import {
   ADD_PRODUCT,
   PRODUCT_CLEAN,
   CHANGE_FILTER,
+  ERROR_PRODUCT,
 } from '../action-types/actionTypes';
 
-export function requestProductAction() {
+export function requestProductAction(payload) {
   return {
     type: REQUEST_PRODUCTS,
+    payload,
   };
 }
 
@@ -53,5 +55,11 @@ export function changeFilterAction(payload) {
   return {
     type: CHANGE_FILTER,
     payload,
+  };
+}
+
+export function errorFetchingProductAction() {
+  return {
+    type: ERROR_PRODUCT,
   };
 }

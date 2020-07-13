@@ -1,11 +1,14 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select, delay } from 'redux-saga/effects';
 import {
   REQUEST_PRODUCTS,
   PREV_PRODUCT,
   NEXT_PRODUCT,
   CHANGE_FILTER,
 } from '../action-types/actionTypes';
-import { receiveProductAction } from '../actions/productAction';
+import {
+  receiveProductAction,
+  errorFetchingProductAction,
+} from '../actions/productAction';
 import { fetchProducts } from '../../api';
 import { getPrevPage, getNextPage, getFilterVal } from './selectors';
 import { switchPages, filterProductsBy } from '../../utils/helpers';
@@ -29,9 +32,11 @@ function* workerProductsSaga(action) {
 
     const filteredBy = filterProductsBy(filterProducts);
 
+    // Simulate call to back-end API
+    yield delay(200);
     const { data, headers } = yield call(fetchProducts, page, filteredBy);
     yield put(receiveProductAction(data, headers));
   } catch (error) {
-    throw new Error('error in productSaga', error);
+    yield put(errorFetchingProductAction());
   }
 }

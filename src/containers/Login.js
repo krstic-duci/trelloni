@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { authAction } from '../store/actions/authAction';
 import ClockLoader from 'react-spinners/ClockLoader';
+import { authAction } from '../store/actions/authAction';
 import styles from '../css/login.module.css';
 
 export default function Login() {
