@@ -3,15 +3,17 @@ import {
   REQUEST_PRODUCTS,
   PREV_PRODUCT,
   NEXT_PRODUCT,
+  CHANGE_FILTER,
 } from '../action-types/actionTypes';
 import { receiveProductAction } from '../actions/productAction';
 import { fetchProducts } from '../../api';
-import { getPrevPage, getNextPage } from './selectors';
+import { getPrevPage, getNextPage, getFilterVal } from './selectors';
+import { switchPages, filterProductsBy } from '../../utils/helpers';
 
 // watcher saga
 export default function* watcherProductSaga() {
   yield takeLatest(
-    [REQUEST_PRODUCTS, PREV_PRODUCT, NEXT_PRODUCT],
+    [REQUEST_PRODUCTS, PREV_PRODUCT, NEXT_PRODUCT, CHANGE_FILTER],
     workerProductsSaga,
   );
 }
@@ -19,17 +21,15 @@ export default function* watcherProductSaga() {
 // worker saga
 function* workerProductsSaga(action) {
   try {
-    let page = 1;
     let prevPage = yield select(getPrevPage);
     let nextPage = yield select(getNextPage);
+    let filterProducts = yield select(getFilterVal);
 
-    if (action.type === PREV_PRODUCT) {
-      page = prevPage;
-    } else if (action.type === NEXT_PRODUCT) {
-      page = nextPage - 1;
-    }
+    const page = switchPages(action.type, prevPage, nextPage);
 
-    const { data, headers } = yield call(fetchProducts, page);
+    const filteredBy = filterProductsBy(filterProducts);
+
+    const { data, headers } = yield call(fetchProducts, page, filteredBy);
     yield put(receiveProductAction(data, headers));
   } catch (error) {
     throw new Error('error in productSaga', error);

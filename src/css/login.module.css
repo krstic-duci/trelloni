@@ -10,4 +10,18 @@
 .login-container form div button {
   width: 100%;
   margin-top: 10px;
+  padding: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container form div button > div {
+  display: inherit;
+  margin-right: 5px;
+}
+
+.login-container form div button > span {
+  font-size: 17px;
 }

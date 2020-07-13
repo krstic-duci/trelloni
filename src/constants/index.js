@@ -9,3 +9,5 @@ export const FilterValues = Object.freeze({
   PRICE_DOWN: 'price_down',
   PRICE_UP: 'price_up',
 });
+
+export const PRODUCT_API = 'http://localhost:5000';

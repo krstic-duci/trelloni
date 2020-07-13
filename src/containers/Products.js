@@ -9,6 +9,7 @@ import {
   productCleanupAction,
 } from '../store/actions/productAction';
 import ProductFilter from '../components/product/ProductFilter';
+import { filterProductsBy } from '../utils/helpers';
 import styles from '../css/products.module.css';
 
 export default function Products() {
@@ -18,6 +19,7 @@ export default function Products() {
   const prevPage = useSelector((state) => state.product.prevPage);
   const nextPage = useSelector((state) => state.product.nextPage);
   const totalPages = useSelector((state) => state.product.totalPages);
+  const filterVal = useSelector((state) => state.product.filterVal);
 
   useEffect(() => {
     dispatch(requestProductAction());
@@ -35,6 +37,8 @@ export default function Products() {
 
     dispatch(nextProductAction());
   };
+
+  const isFilterOn = filterProductsBy(filterVal);
 
   return (
     <>
@@ -73,7 +77,9 @@ export default function Products() {
           <div className={styles['pagination']}>
             <Link
               onClick={prevProduct}
-              to={`${match.url}?_page=${prevPage === 1 ? 1 : prevPage - 1}`}
+              to={`${match.url}?_page=${prevPage === 1 ? 1 : prevPage - 1}${
+                isFilterOn ? isFilterOn : ''
+              }`}
               style={
                 prevPage === 1
                   ? { 'cursor': 'not-allowed' }
@@ -85,7 +91,7 @@ export default function Products() {
               onClick={nextProduct}
               to={`${match.url}?_page=${
                 nextPage === totalPages + 1 ? totalPages : nextPage
-              }`}
+              }${isFilterOn ? isFilterOn : ''}`}
               style={
                 nextPage === totalPages + 1
                   ? { 'cursor': 'not-allowed' }

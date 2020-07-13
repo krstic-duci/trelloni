@@ -1,4 +1,6 @@
 import faker from 'faker';
+import { PREV_PRODUCT, NEXT_PRODUCT } from '../store/action-types/actionTypes';
+import { FilterValues } from '../constants';
 
 function makeId() {
   let _id = 0;
@@ -31,4 +33,31 @@ export function makeProducts() {
     arr.push(products);
   }
   console.log(JSON.stringify(arr));
+}
+
+export function switchPages(actionType, previousPage, nextPage) {
+  let pageTmp = 1;
+  if (actionType === PREV_PRODUCT) {
+    pageTmp = previousPage;
+  } else if (actionType === NEXT_PRODUCT) {
+    pageTmp = nextPage - 1;
+  }
+  return pageTmp;
+}
+
+export function filterProductsBy(filterVal) {
+  let filterTmp = '';
+  if (filterVal === FilterValues.PRICE_DOWN) {
+    filterTmp = '&_sort=price&_order=asc';
+  } else if (filterVal === FilterValues.PRICE_UP) {
+    filterTmp = '&_sort=price&_order=desc';
+  } else {
+    filterTmp = '';
+  }
+
+  if (!filterTmp) {
+    return;
+  } else {
+    return filterTmp;
+  }
 }

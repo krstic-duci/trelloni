@@ -14,6 +14,7 @@ export default function ProductFilter() {
   };
   return (
     <div className={styles['filterContainer']}>
+      <span>Filter By:</span>
       <select onChange={handleChangeFilter} value={selectVal}>
         <option value={FilterValues.NAME}>Name</option>
         <option value={FilterValues.PRICE_DOWN}>Price &#8595;</option>

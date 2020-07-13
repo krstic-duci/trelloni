@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styles from '../css/login.module.css';
 import { authAction } from '../store/actions/authAction';
+import ClockLoader from 'react-spinners/ClockLoader';
+import styles from '../css/login.module.css';
 
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const forbidDefault = (e) => {
+    e.preventDefault();
+  };
+
   const loginUser = () => {
+    setIsLoading(true);
     dispatch(authAction(true));
 
     // Simulate the auth
-    history.push('/');
+    setTimeout(() => setIsLoading(false), 950);
+    setTimeout(() => history.push('/'), 1000);
   };
   return (
     <div className={styles['login-container']}>
       <h1>Login</h1>
       <section>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={forbidDefault}>
           <div>
             <label>
               <input type='text' placeholder='Email' />
@@ -30,8 +38,9 @@ export default function Login() {
             </label>
           </div>
           <div>
-            <button type='submit' onClick={loginUser}>
-              Login
+            <button type='submit' onClick={loginUser} disabled={isLoading}>
+              <ClockLoader loading={isLoading} size={15} color={'#747474'} />
+              <span>Login</span>
             </button>
           </div>
         </form>

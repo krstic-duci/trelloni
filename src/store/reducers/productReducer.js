@@ -13,7 +13,7 @@ const initialState = {
   nextPage: 2,
   totalPages: 0,
   totalPrice: 0,
-  filterVal: 'name',
+  filterVal: '',
 };
 
 export default function productReducer(state = initialState, action) {
@@ -58,12 +58,15 @@ export default function productReducer(state = initialState, action) {
       ...state,
       prevPage: 1,
       nextPage: 2,
+      filterVal: '',
     };
   }
 
   if (action.type === CHANGE_FILTER) {
     return {
       ...state,
+      prevPage: 1,
+      nextPage: 2,
       filterVal: action.payload,
     };
   }
