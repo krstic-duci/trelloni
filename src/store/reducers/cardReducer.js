@@ -28,12 +28,12 @@ export default function cardReducer(state = initialState, { type, payload }) {
   }
 
   if (type == MOVE_CARD) {
-     // previous elements
+    // previous elements
     let prevTmpArr = state[payload.prevStatus];
     let prevElemIdx = prevTmpArr.findIndex((elem) => elem.id === payload.id);
     let movedCard = prevTmpArr.splice(prevElemIdx, 1)[0];
     movedCard.status = payload.nextStatus;
-     // current elements
+    // current elements
     let nextTmpArr = [...state[payload.nextStatus], movedCard];
     return {
       ...state,
