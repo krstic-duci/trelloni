@@ -9,7 +9,11 @@ export default function CardShift({ id, status }) {
     dispatch(moveCardAction({ id, nextStatus: e.target.value, prevStatus }));
   };
   return (
-    <select onChange={(e) => selectValue(e, status)} value={status}>
+    <select
+      onBlur={(e) => selectValue(e, status)}
+      onChange={(e) => selectValue(e, status)}
+      value={status}
+    >
       <option value={CardStatus.NEW}>new</option>
       <option value={CardStatus.PROGRESS}>in progress</option>
       <option value={CardStatus.FINISHED}>finished</option>

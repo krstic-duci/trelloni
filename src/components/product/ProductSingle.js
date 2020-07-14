@@ -46,7 +46,8 @@ export default function ProductSingle() {
           <span
             style={
               addedToCartText ? { display: 'inline' } : { display: 'none' }
-            }>
+            }
+          >
             Added
           </span>
         </div>

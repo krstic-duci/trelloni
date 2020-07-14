@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "eqeqeq": "off",
+    "no-duplicate-imports": "error",
+    "max-len": "warn"
+  }
+}

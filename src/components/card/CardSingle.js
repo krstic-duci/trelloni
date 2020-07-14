@@ -33,7 +33,8 @@ export default function CardSingle({ titleCard, id, status, txtArea }) {
         <textarea
           placeholder='Type text...'
           defaultValue={txtArea}
-          onKeyDown={updateTxtArea}></textarea>
+          onKeyDown={updateTxtArea}
+        ></textarea>
       </div>
       <button onClick={deleteCardById}>X</button>
     </div>

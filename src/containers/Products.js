@@ -43,7 +43,11 @@ export default function Products() {
     dispatch(nextProductAction());
   };
 
-  const isFilterOn = filterProductsBy(filterVal);
+  const isFilterOn = filterProductsBy(filterVal)
+    ? filterProductsBy(filterVal)
+    : '';
+  const linkPrevPage = prevPage === 1 ? 1 : prevPage - 1;
+  const linkNextPage = nextPage === totalPages + 1 ? totalPages : nextPage;
 
   return (
     <>
@@ -74,7 +78,8 @@ export default function Products() {
                       <Link
                         key={i}
                         to={`${match.url}/${elem.id}`}
-                        className={styles['products-container']}>
+                        className={styles['products-container']}
+                      >
                         <figure>
                           <img alt={elem.title} src={elem.image} />
                           <figcaption>{elem.title}</figcaption>
@@ -84,29 +89,33 @@ export default function Products() {
                     ))}
                   </section>
                   <div className={styles['pagination']}>
+                    {/* prettier-ignore */}
                     <Link
                       onClick={prevProduct}
-                      to={`${match.url}?_page=${
-                        prevPage === 1 ? 1 : prevPage - 1
-                      }${isFilterOn ? isFilterOn : ''}`}
+                      to={
+                        `${match.url}?_page=${linkPrevPage}${isFilterOn}`
+                      }
                       style={
                         prevPage === 1
-                          ? { 'cursor': 'not-allowed' }
-                          : { 'cursor': 'pointer' }
-                      }>
+                          ? { cursor: 'not-allowed' }
+                          : { cursor: 'pointer' }
+                      }
+                    >
                       Prev
                     </Link>
 
+                    {/* prettier-ignore */}
                     <Link
                       onClick={nextProduct}
-                      to={`${match.url}?_page=${
-                        nextPage === totalPages + 1 ? totalPages : nextPage
-                      }${isFilterOn ? isFilterOn : ''}`}
+                      to={
+                        `${match.url}?_page=${linkNextPage}${isFilterOn}`
+                      }
                       style={
                         nextPage === totalPages + 1
-                          ? { 'cursor': 'not-allowed' }
-                          : { 'cursor': 'pointer' }
-                      }>
+                          ? { cursor: 'not-allowed' }
+                          : { cursor: 'pointer' }
+                      }
+                    >
                       Next
                     </Link>
                   </div>

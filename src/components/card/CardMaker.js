@@ -37,7 +37,8 @@ export default function CardMaker() {
       </button>
       <form
         onSubmit={(e) => e.preventDefault()}
-        style={isFormShown ? { display: 'block' } : { display: 'none' }}>
+        style={isFormShown ? { display: 'block' } : { display: 'none' }}
+      >
         <label>
           <input
             type='text'

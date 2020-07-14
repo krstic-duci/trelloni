@@ -13,14 +13,12 @@ const initialState = {
 };
 
 export default function cardReducer(state = initialState, { type, payload }) {
-  // eslint-disable-next-line
   if (type == MAKE_NEW_CARD) {
     return {
       ...state,
       [CardStatus.NEW]: [...state[CardStatus.NEW], payload],
     };
   }
-  // eslint-disable-next-line
   if (type == DELETE_CARD) {
     let tmpArr = state[payload.status].filter((elem) => elem.id !== payload.id);
     return {
@@ -29,21 +27,22 @@ export default function cardReducer(state = initialState, { type, payload }) {
     };
   }
 
-  // eslint-disable-next-line
   if (type == MOVE_CARD) {
-    let prevTmpArr = state[payload.prevStatus]; // previous elements
+     // previous elements
+    let prevTmpArr = state[payload.prevStatus];
     let prevElemIdx = prevTmpArr.findIndex((elem) => elem.id === payload.id);
     let movedCard = prevTmpArr.splice(prevElemIdx, 1)[0];
     movedCard.status = payload.nextStatus;
-    let nextTmpArr = [...state[payload.nextStatus], movedCard]; // current elements
+     // current elements
+    let nextTmpArr = [...state[payload.nextStatus], movedCard];
     return {
       ...state,
-      [payload.prevStatus]: prevTmpArr,
-      [payload.nextStatus]: nextTmpArr,
+      [payload.prevStatus]: [...prevTmpArr],
+      [payload.nextStatus]: [...nextTmpArr],
     };
   }
 
-  // eslint-disable-next-line
+  // TODO: Implement
   if (type == UPDATE_TXT) {
     console.log('update text');
   }
