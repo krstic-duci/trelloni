@@ -62,16 +62,16 @@ export function filterProductsBy(filterVal) {
   }
 }
 
-export function isEmailFieldValid (userEmail = '') {
+export function isEmailFieldValid(userEmail = '') {
   return (
     userEmail.includes('@') && userEmail.includes('.') && userEmail.length > 6
   );
-};
+}
 
-export function isPassFieldValid (userPass = '') {
+export function isPassFieldValid(userPass = '') {
   return userPass.length > 6 && /.*[A-Z].*/.test(userPass);
-};
+}
 
-export function forbidDefault (e) {
+export function forbidDefault(e) {
   e.preventDefault();
-};
+}

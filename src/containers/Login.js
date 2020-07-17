@@ -36,14 +36,14 @@ export default function Login() {
   };
 
   const emailOnFocusChange = () => {
-    setShowPassPopover(false)
+    setShowPassPopover(false);
     setShowEmailPopover(!showEmailPopover);
   };
 
   const passOnFocusChange = () => {
     setShowEmailPopover(false);
-    setShowPassPopover(!showPassPopover)
-  }
+    setShowPassPopover(!showPassPopover);
+  };
 
   const loginUser = () => {
     setIsLoading(true);

@@ -16,7 +16,8 @@ export default function CardSingle({ titleCard, id, status, txtArea }) {
         dispatch(updateCardTxtAction({ txtArea: newTxt, id, status })),
       300,
     ),
-  []);
+    [],
+  );
   const deleteCardById = () => {
     dispatch(deleteCardAction({ id, status }));
   };
@@ -32,7 +33,8 @@ export default function CardSingle({ titleCard, id, status, txtArea }) {
           onBlur={updateTxtArea}
           defaultValue={txtArea}
           placeholder='Type text...'
-          onChange={updateTxtArea}></textarea>
+          onChange={updateTxtArea}
+        ></textarea>
       </div>
       <button onClick={deleteCardById}>X</button>
     </div>
