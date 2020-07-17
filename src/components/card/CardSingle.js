@@ -1,5 +1,5 @@
-import React from 'react';
-import debounce from 'lodash/debounce';
+import React, { useCallback } from 'react';
+import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
 import {
   deleteCardAction,
@@ -10,31 +10,29 @@ import styles from '../../css/cardsSingle.module.css';
 
 export default function CardSingle({ titleCard, id, status, txtArea }) {
   const dispatch = useDispatch();
+  const delayedTxtAreaUpdate = useCallback(
+    debounce(
+      (newTxt) =>
+        dispatch(updateCardTxtAction({ txtArea: newTxt, id, status })),
+      300,
+    ),
+  []);
   const deleteCardById = () => {
     dispatch(deleteCardAction({ id, status }));
   };
   const updateTxtArea = (e) => {
-    const val = e.target.value;
-    handleDebounce(val);
+    delayedTxtAreaUpdate(e.target.value);
   };
-  const handleDebounce = debounce(
-    (val) => dispatch(updateCardTxtAction({ txtArea: val, id })),
-    300,
-  );
   return (
     <div className={styles['cards-single-container']}>
       <h3>{titleCard}</h3>
       <CardShift id={id} status={status} />
       <div>
-        {/* <textarea
-          placeholder='Type text...'
-          // value={txtArea}
-          onChange={updateTxtArea}></textarea> */}
         <textarea
-          placeholder='Type text...'
+          onBlur={updateTxtArea}
           defaultValue={txtArea}
-          onKeyDown={updateTxtArea}
-        ></textarea>
+          placeholder='Type text...'
+          onChange={updateTxtArea}></textarea>
       </div>
       <button onClick={deleteCardById}>X</button>
     </div>

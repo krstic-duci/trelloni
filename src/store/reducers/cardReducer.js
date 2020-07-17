@@ -42,9 +42,18 @@ export default function cardReducer(state = initialState, { type, payload }) {
     };
   }
 
-  // TODO: Implement
   if (type == UPDATE_TXT) {
-    console.log('update text');
+    let newTxtAreaCards = [...state[payload.status]];
+    newTxtAreaCards.map((elem) => {
+      if (elem.id === payload.id) {
+        elem.txtArea = payload.txtArea
+      }
+      return elem;
+    });
+    return {
+      ...state,
+      [payload.status]: newTxtAreaCards
+    }
   }
 
   return state;
