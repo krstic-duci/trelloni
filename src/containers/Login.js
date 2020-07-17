@@ -65,7 +65,7 @@ export default function Login() {
           <div>
             <label>
               <input
-                type='text'
+                type='email'
                 placeholder='Email'
                 onChange={updateUserEmail}
                 onBlur={updateUserEmail}
@@ -77,7 +77,7 @@ export default function Login() {
             <Popover
               show={showEmailPopover}
               type='email'
-              text={['at least 6 characters', 'must be valid email address']}
+              text={['at least 12 characters', 'must be valid email address']}
             />
           </div>
           <div>
