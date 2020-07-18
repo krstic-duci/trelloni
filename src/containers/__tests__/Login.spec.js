@@ -22,12 +22,10 @@ describe('<Login /> functionality', () => {
   });
 
   test('should render enabled submit button when pass/email are valid', () => {
-    let inputEmail = wrapper.find('input[type="email"]');
-    inputEmail.simulate('change', {
+    wrapper.find('input[type="email"]').simulate('change', {
       target: { name: 'email', value: 'duconka@ducolinka.com' },
     });
-    let inputPass = wrapper.find('input[type="password"]');
-    inputPass.simulate('change', {
+    wrapper.find('input[type="password"]').simulate('change', {
       target: { name: 'password', value: 'Duleaka90' },
     });
 
@@ -53,6 +51,17 @@ describe('<Login /> functionality', () => {
 
   test('should allow valid pass', () => {
     expect(isPassFieldValid('Duleaka90')).toBeTruthy();
+  });
+
+  test('should not render <Popover /> when email/pass are blured', () => {
+    wrapper.find('input[type="email"]').simulate('blur', {
+      target: { name: 'email', value: '' },
+    });
+    wrapper.find('input[type="password"]').simulate('blur', {
+      target: { name: 'password', value: '' },
+    });
+
+    expect(wrapper.find('div.popover-container').exists()).toBeFalsy();
   });
 
   // TODO: Write a test for useDispatch on submit button
