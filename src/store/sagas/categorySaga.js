@@ -16,8 +16,8 @@ function* workerCategorySaga(action) {
     const category = action.payload;
     const { data } = yield call(fetchCategoryProducts, category);
     //simulate API call
-    yield delay(200)
-    yield put(receiveCategoryAction(data))
+    yield delay(200);
+    yield put(receiveCategoryAction(data));
   } catch (error) {
     yield put(errorCategoryAction());
   }

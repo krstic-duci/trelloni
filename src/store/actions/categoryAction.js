@@ -7,7 +7,7 @@ import {
 export function requestCategoryAction(payload) {
   return {
     type: REQUEST_CATEGORY,
-    payload
+    payload,
   };
 }
 
@@ -20,6 +20,6 @@ export function receiveCategoryAction(payload) {
 
 export function errorCategoryAction() {
   return {
-    type: ERROR_CATEGORY
-  }
+    type: ERROR_CATEGORY,
+  };
 }

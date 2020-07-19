@@ -17,7 +17,7 @@ import {
   getTotalPages,
   getFilterVal,
   getProductsLoading,
-  getErrorProduct
+  getErrorProduct,
 } from '../store/selectors/selectors';
 import { filterProductsBy } from '../utils/helpers';
 import styles from '../css/products.module.css';

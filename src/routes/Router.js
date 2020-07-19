@@ -9,7 +9,7 @@ import NoMatch from '../components/NoMatch';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductSingle from '../components/product/ProductSingle';
-import { getIsAuth } from '../store/selectors/selectors'
+import { getIsAuth } from '../store/selectors/selectors';
 
 // eslint-disable-next-line
 function callback(id, phase, actualTime, baseTime, startTime, commitTime) {
