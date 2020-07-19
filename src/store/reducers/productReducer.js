@@ -24,7 +24,7 @@ export default function productReducer(state = initialState, action) {
   if (action.type === REQUEST_PRODUCTS) {
     return {
       ...state,
-      productsLoading: true,
+      productsLoading: action.payload,
     };
   }
   if (action.type === RECEIVE_PRODUCTS) {

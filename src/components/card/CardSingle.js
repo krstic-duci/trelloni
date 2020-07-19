@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
+import CardShift from './CardShift';
 import {
   deleteCardAction,
   updateCardTxtAction,
 } from '../../store/actions/cardAction';
-import CardShift from './CardShift';
 import styles from '../../css/cardsSingle.module.css';
 
 export default function CardSingle({ titleCard, id, status, txtArea }) {

@@ -42,6 +42,7 @@ export function makeProducts() {
     products.color = faker.commerce.color();
     products.title = faker.commerce.productName();
     products.product = faker.commerce.product();
+    products.category = faker.commerce.department().toLowerCase();
     products.text = faker.lorem.text();
     products.price = faker.commerce.price();
     products.image = `${url}`;

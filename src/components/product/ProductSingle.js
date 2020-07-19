@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import CategoryProducts from '../category/CategoryProducts';
 import { addProductAction } from '../../store/actions/productAction';
+import { getProducts } from '../../store/selectors/selectors';
 import styles from '../../css/singleProduct.module.css';
 
 export default function ProductSingle() {
-  const { id } = useParams();
-  const products = useSelector((state) => state.product.products);
-  const singleProduct = products.find((elem) => elem.id === id);
   const [addedToCartText, setAddedToCartText] = useState(false);
+  const { id } = useParams();
+  const products = useSelector(getProducts);
+  const singleProduct = products.find((elem) => elem.id === id);
+  const singleProductCategory = singleProduct.category;
   const dispatch = useDispatch();
 
   const addProductToCart = () => {
@@ -52,6 +55,8 @@ export default function ProductSingle() {
           </span>
         </div>
       </div>
+
+      <CategoryProducts category={singleProductCategory} productId={id} />
     </>
   );
 }

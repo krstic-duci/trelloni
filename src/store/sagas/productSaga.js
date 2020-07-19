@@ -10,7 +10,7 @@ import {
   errorFetchingProductAction,
 } from '../actions/productAction';
 import { fetchProducts } from '../../api';
-import { getPrevPage, getNextPage, getFilterVal } from './selectors';
+import { getPrevPage, getNextPage, getFilterVal } from '../selectors/selectors';
 import { switchPages, filterProductsBy } from '../../utils/helpers';
 
 // watcher saga

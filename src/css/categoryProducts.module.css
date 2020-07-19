@@ -1,0 +1,10 @@
+.category-container {
+  margin: 80px 0;
+}
+
+.category-elements-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+}

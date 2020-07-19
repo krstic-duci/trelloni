@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ClockLoader from 'react-spinners/ClockLoader';
 import Popover from '../components/Popover';
+import { authAction } from '../store/actions/authAction';
 import {
   isEmailFieldValid,
   isPassFieldValid,
   forbidDefault,
 } from '../utils/helpers';
-import { authAction } from '../store/actions/authAction';
 import styles from '../css/login.module.css';
 
 export default function Login() {
@@ -57,6 +57,7 @@ export default function Login() {
     }, 950);
     setTimeout(() => history.push('/'), 1000);
   };
+
   return (
     <div className={styles['login-container']}>
       <h1>Login</h1>

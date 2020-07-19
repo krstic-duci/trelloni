@@ -2,27 +2,37 @@ import React, { useEffect } from 'react';
 import { useRouteMatch, Switch, Route, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+import ProductSingle from '../components/product/ProductSingle';
+import ProductFilter from '../components/product/ProductFilter';
 import {
   requestProductAction,
   prevProductAction,
   nextProductAction,
   productCleanupAction,
 } from '../store/actions/productAction';
+import {
+  getProducts,
+  getPrevPage,
+  getNextPage,
+  getTotalPages,
+  getFilterVal,
+  getProductsLoading,
+  getErrorProduct
+} from '../store/selectors/selectors';
 import { filterProductsBy } from '../utils/helpers';
-import ProductSingle from '../components/product/ProductSingle';
-import ProductFilter from '../components/product/ProductFilter';
 import styles from '../css/products.module.css';
 
 export default function Products() {
   const match = useRouteMatch();
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
-  const productsLoading = useSelector((state) => state.product.productsLoading);
-  const prevPage = useSelector((state) => state.product.prevPage);
-  const nextPage = useSelector((state) => state.product.nextPage);
-  const totalPages = useSelector((state) => state.product.totalPages);
-  const filterVal = useSelector((state) => state.product.filterVal);
-  const errorProduct = useSelector((state) => state.product.errorProduct);
+
+  const products = useSelector(getProducts);
+  const productsLoading = useSelector(getProductsLoading);
+  const errorProduct = useSelector(getErrorProduct);
+  const prevPage = useSelector(getPrevPage);
+  const nextPage = useSelector(getNextPage);
+  const totalPages = useSelector(getTotalPages);
+  const filterVal = useSelector(getFilterVal);
 
   useEffect(() => {
     dispatch(requestProductAction(true));
@@ -60,7 +70,7 @@ export default function Products() {
           {errorProduct ? (
             errorProduct
           ) : (
-            <section style={{ height: '100vh' }}>
+            <section>
               {productsLoading ? (
                 <div className={styles['loading-wrapper']}>
                   <ClimbingBoxLoader
