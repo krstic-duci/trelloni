@@ -13,9 +13,6 @@ export default function Header() {
         <Link to='/products'>Products</Link>
       </li>
       <li>
-        <Link to='/profile'>Profile</Link>
-      </li>
-      <li>
         <ProductCart />
       </li>
     </ul>

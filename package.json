@@ -21,6 +21,7 @@
   "scripts": {
     "build": "react-scripts build",
     "test": "react-scripts test --verbose=false",
+    "coverage": "npm run test -- --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
     "server": "json-server -w db.json -p 5000",

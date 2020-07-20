@@ -11,9 +11,14 @@ jest.mock('react-redux', () => ({
   useDispatch: () => jest.fn(),
 }));
 
+const history = {
+  push: jest.fn(),
+};
+
 describe('<Login /> functionality', () => {
   let wrapper = null;
   beforeEach(() => {
+    jest.clearAllMocks();
     wrapper = shallow(<Login />);
   });
 

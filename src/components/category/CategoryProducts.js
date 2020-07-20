@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
-import { Link } from 'react-router-dom';
 import { requestCategoryAction } from '../../store/actions/categoryAction';
 import {
   getCategoryProducts,
@@ -41,13 +40,7 @@ export default function CategoryProducts({ category, productId }) {
                   <img src={elem.image} alt={elem.title} />
                   <p>{elem.title}</p>
                   <p>$: {elem.price}</p>
-                  <p>{elem.id}</p>
                 </div>
-                // <Link to={`/products/${elem.id}`} key={elem.id}>
-                //   <img src={elem.image} alt={elem.title} />
-                //   <p>{elem.title}</p>
-                //   <p>$: {elem.price}</p>
-                // </Link>
               ))}
             </div>
           </>
